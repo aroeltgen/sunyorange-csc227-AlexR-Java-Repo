@@ -51,3 +51,6 @@ function triangleArea(base, height) {
 }
 
 console.log("Area of triangle with base 5 and height 10 is " + triangleArea(5, 10));  
+
+
+//changes
