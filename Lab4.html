@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<p>Enter Person 1 Name</p>
+<input id="p1f" type="text" placeholder="enter first name"></input>
+<input id="p1l" type="text" placeholder="enter last name"></input>
+<br>
+<p>Enter Person 2 Name</p>
+<input id="p2f" type="text" placeholder="enter first name"></input>
+<input id="p2l" type="text" placeholder="enter last name"></input>
+<br>
+<p>Enter Person 3 Name</p>
+<input id="p3f" type="text" placeholder="enter first name"></input>
+<input id="p3l" type="text" placeholder="enter last name"></input>
+<br>
+<p>Enter Person 4 Name</p>
+<input id="p4f" type="text" placeholder="enter first name"></input>
+<input id="p4l" type="text" placeholder="enter last name"></input>
+<br>
+<p>Enter Person 5 Name</p>
+<input id="p5f" type="text" placeholder="enter first name"></input>
+<input id="p5l" type="text" placeholder="enter last name"></input>
+<br>
+<br>
+
+<button onclick="generateRoster()">Generate Roster</button>
+<br>
+<br>
+
+<textarea id="roster-output" placeholder="Class roster"></textarea>
+
+
+
+
+
+<script>
+
+
+    function generateRoster() {
+            let roster = "";
+
+            for (let i = 1; i <= 5; i++) {
+                const firstName = document.getElementById(`p${i}f`).value.trim();
+                const lastName = document.getElementById(`p${i}l`).value.trim();
+
+
+                
+                if (firstName && lastName) {
+                    roster += `${lastName}, ${firstName}\n`;
+                }
+            }
+
+            document.getElementById('roster-output').value = roster;
+        }
+
+
+</script>
+
+
+</body>
+</html>
