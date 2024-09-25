@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+
+
+    <input id="name" type="text" placeholder="enter name"></input>
+    <input id="email" type="text" placeholder="enter email"></input>
+    <br>
+    <button onclick="onAddEmail()">Add to Index</button>
+<br>
+    <input id="retrieveName" type="text" placeholder="name to retrieve email"></input>
+    <br>
+    <button onclick="onShow()">Show Email</button>
+
+    <p id="output"></p>
+
+
+<script>
+
+const index = {}
+
+function onAddEmail() {
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    index[name] = email;
+
+
+}
+
+function onShow() {
+
+    const retrieveName = document.getElementById('retrieveName').value.trim()
+    const output = document.getElementById('output');
+
+    if (retrieveName in index) {
+                const email = index[retrieveName];
+                output.innerHTML = `The email for ${retrieveName} is ${email}.`;
+    } else {
+                output.innerHTML = `NOPE: The name "${retrieveName}" doesn't exist here.`;
+    }
+
+
+}
+
+</script>
+
+
+</body>
+</html>
