@@ -1,32 +1,22 @@
+function fillHoles() {
 
-function fillFivePotholes() {
-
-
-   	 repeat (5) {
-
-         	move();
-        	fillPothole();
-        	move();
-
-}
+move();
+fillPothole();
+move();
+move();
+move();
+fillPothole();
+move();
 
 
 }
-
-
-
 
 
 function fillPothole() {
 
 turnRight();
 move();
-
-
-if (noBeepersPresent()) {
 putBeeper();
-}
-
 turnAround();
 move();
 turnRight();
@@ -47,3 +37,6 @@ turnLeft();
 turnLeft();
 
 }
+
+
+
