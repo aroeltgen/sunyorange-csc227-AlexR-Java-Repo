@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+        button {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Directory</h1>
+    <table id="directoryTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <button onclick="addRow()">Add Row</button>
+    <button onclick="saveRows()">Save</button>
+
+    <script>
+
+function addRow() {
+
+    const table = document.getElementById('directoryTable');
+    const newRow = table.insertRow();
+
+    // Create input fields for name and email
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Enter Name';
+            
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.placeholder = 'Enter Email';
+
+    newRow.appendChild(nameInput);
+    newRow.appendChild(emailInput);
+
+}
+
+
+function saveRow() {
+
+    const inputs = document.querySelectorAll('input');
+    
+
+
+    for (let i = 0; i < inputs.length; i++) {
+        // Do something with each input element
+        inputs.setAttribute('readonly', 'true');
+    }
+
+}
+
+   
+</script>
+
+</body>
+</html>
