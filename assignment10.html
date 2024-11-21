@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Find State from Zip</h1>
+    <label for="zip">Enter Zip Code</label>
+    <input id="zip"></input>
+    <br>
+
+    <button id="getStateBtn">Find the State</button>
+    <p id="theState"></p>
+    <p id="error"></p> 
+
+
+    <script>
+
+    function main() {
+
+        function getStateHandler() {
+
+            const request = new XMLHttpRequest();
+            request.addEventListener("load", function(e) {
+                if (e.target.status >= 400) {
+                    document.getElementById("error").innerHTML = `Error: status = ${e.target.status}`;
+                    document.getElementById("theState").innerHTML = "";
+                    return;
+                }
+               
+               
+               
+                const res = JSON.parse(e.target.responseText);
+                const theState = res.places[0].state;
+                document.getElementById("theState").innerHTML =`The State with this zip is ${theState}`;
+                document.getElementById("error").innerHTML = "";
+
+            });
+
+
+                // Handle network errors
+                request.addEventListener("error", function(e) {
+                document.getElementById("error").innerHTML = e.type;
+                document.getElementById("theState").innerHTML = "";
+            });
+
+                // Handle timeout errors
+                request.addEventListener("timeout", function(e) {
+                document.getElementById("error").innerHTML = e.type;
+                document.getElementById("theState").innerHTML = "";
+            });
+
+            const zip = document.getElementById("zip").value;
+            const requestUrl = `https://api.zippopotam.us/us/${zip}`;
+            
+            request.timeout = 90; // Set timeout time
+
+            request.open("GET", requestUrl, true);
+            request.send();
+
+        }   
+
+        document.getElementById('getStateBtn').addEventListener('click', getStateHandler);
+
+    }
+
+    main();
+
+    </script>
+
+
+</body>
+</html>
