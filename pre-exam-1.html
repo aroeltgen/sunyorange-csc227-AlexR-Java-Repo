@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+
+
+    <script>
+
+        function getStats(arr) {
+            const count = arr.length 
+            
+            let sum = 0;
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i];
+                
+                if (arr[i] < min){
+                    min = arr[i];
+                }
+                if (arr[i] > max){
+                    max = arr[i];
+                }
+
+            }
+
+            average = sum / count;
+
+            let sortedArr = arr.sort()
+
+            if (count % 2 === 0) {
+                let mid1 = sortedArr[count / 2 - 1];
+                let mid2 = sortedArr[count / 2];
+                median = (mid1 + mid2) / 2;
+            } else {
+                medianVal = (count / 2) - .5
+                median = sortedArr[medianVal] 
+            }
+
+
+          //  min = sortedArr[0];
+          //  max = sortedArr[count -1];
+/*
+          let res = {
+
+            "count:" count,
+                "sum:" sum,
+                "average:" average,
+                "sortedArray:"" sortedArr,
+                "median:" median,
+                "max:" max,
+                "min:" min,
+
+          }
+
+          return res;
+*/
+
+            return {
+                count: count,
+                sum: sum,
+                average: average,
+                sortedArray: sortedArr,
+                median: median,
+                max: max,
+                min: min,
+            };
+
+        }
+
+        let arr = [3, 7, 0, -1, 2];
+        let stats = getStats(arr);
+        console.log(JSON.stringify(stats));
+
+
+
+    </script>
+</body>
+</html>
