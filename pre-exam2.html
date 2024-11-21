@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="postsContainer"></div>
+
+    <button onclick="addNewPost()">New Post</button>
+
+    <script>
+//#2
+
+        function addNewPost() {
+            // Create a container for the new post
+            const post = document.createElement('div');
+
+            // Create the title input
+            const title = document.createElement('input');
+            title.type = 'text';
+            title.placeholder = 'Title';
+            post.appendChild(title);
+
+            // Create the body textarea
+            const body = document.createElement('textarea');
+            body.placeholder = 'Body';
+            post.appendChild(body);
+
+            // Create the tags input
+            const tags = document.createElement('input');
+            tags.type = 'text';
+            tags.placeholder = 'Tags';
+            post.appendChild(tags);
+
+            // Append the new post to the posts container
+            document.getElementById('postsContainer').appendChild(post);
+        }
+    </script>
+
+
+</body>
+</html>
