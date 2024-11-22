@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Numbers</title>
+</head>
+<body>
+  <form id="addNumsForm">
+    <input type="number" id="numA" name="a" required><br><br>
+    
+    <input type="number" id="numB" name="b" required><br><br>
+    
+    <button type="button" onclick="submitForm()">Calculate</button>
+  </form>
+
+  <p id="result">Result: </p>
+
+  <script>
+    function submitForm() {
+      
+      const numA = document.getElementById("numA").value;
+      const numB = document.getElementById("numB").value;
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", `http://localhost:3000/api/addNums?a=${numA}&b=${numB}`, true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          document.getElementById("result").textContent = `Result: ${response.res}`;
+       
+       
+        } else {
+          document.getElementById("result").textContent = `Error: ${xhr.statusText}`;
+        }
+      };
+      
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
