@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 11 and API to lambda</title>
+</head>
+<body>
+    
+
+<!-- 2) Rewrite your previous program that called an API so that it uses lambda syntax. -->
+
+
+ 
+    <h1>Find State from Zip</h1>
+    <label for="zip">Enter Zip Code</label>
+    <input id="zip"></input>
+    <br>
+
+    <button id="getStateBtn">Find the State</button>
+    <p id="theState"></p>
+    <p id="error"></p> 
+
+    <script>
+    const main = () => {
+
+        const getStateHandler = () => {
+            const request = new XMLHttpRequest();
+
+            request.addEventListener("load", (e) => {
+                if (e.target.status >= 400) {
+                    document.getElementById("error").innerHTML = `Error: status = ${e.target.status}`;
+                    document.getElementById("theState").innerHTML = "";
+                    return;
+                }
+
+                const res = JSON.parse(e.target.responseText);
+                const theState = res.places[0].state;
+                document.getElementById("theState").innerHTML = `The State with this zip is ${theState}`;
+                document.getElementById("error").innerHTML = "";
+            });
+
+            // Handle network errors
+            request.addEventListener("error", (e) => {
+                document.getElementById("error").innerHTML = e.type;
+                document.getElementById("theState").innerHTML = "";
+            });
+
+            // Handle timeout errors
+            request.addEventListener("timeout", (e) => {
+                document.getElementById("error").innerHTML = e.type;
+                document.getElementById("theState").innerHTML = "";
+            });
+
+            const zip = document.getElementById("zip").value;
+            const requestUrl = `https://api.zippopotam.us/us/${zip}`;
+            
+            request.timeout = 90; // Set timeout time
+
+            request.open("GET", requestUrl, true);
+            request.send();
+        };
+
+        document.getElementById('getStateBtn').addEventListener('click', getStateHandler);
+    };
+
+    main();
+    </script>
+
+
+
+
+
+
+
+
+    <script>
+
+
+/*
+Assignment 11
+1) Rewrite the following function into Lambda syntax:
+function largestOfThree(a, b, c) {
+if (a > b && a > c) return a;
+if (b > a && b > c) return b;
+return c;
+}
+*/
+
+
+function largestOfThree(a, b, c) {
+if (a > b && a > c) return a;
+if (b > a && b > c) return b;
+return c;
+}
+
+
+
+const largestOfThree = (a, b, c) => {
+if (a > b && a > c) return a;
+if (b > a && b > c) return b;
+return c;
+};
+
+
+
+
+
+
+
+
+/*
+Assignment 11
+
+
+3) Explain in English how this recursive function runs:
+function sum(n) {
+if (n === 1) {
+return 1;
+}
+return n + sum(n - 1);
+}
+
+
+*******
+This function (sum) calculates the sum of all the numbers between 1 and n.
+
+The function first checks if the number n is equal to 1.
+If it is, the function will return the number 1.
+
+This is also the limiting factor that stops the function 
+from running past 0 into negative numbers and going on forever.
+
+If n is not 1, the function returns n and adds a call back to the function itself but
+decrementing n by 1 each time.
+
+The function continues to call itself, decreasing n by 1 until n becomes 1. 
+
+*******
+
+
+4) Do some research on Google etc. and explain in English why calling the sum function with a
+very large input number fails - e.g. sum(11111) fails with error: Maximum call stack size
+exceeded
+
+********
+The error "Maximum call stack size exceeded" happens because the sum function 
+is written using recursion, where the function calls itself repeatedly. 
+For a large input like 11111, the function makes too many recursive calls, 
+overloading the call stack (a limited memory space for tracking function calls)
+until it runs out of space. 
+********
+
+
+*/
+
+    </script>
+
+    
+</body>
+</html>
